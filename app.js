@@ -1,6 +1,5 @@
 'use strict';
 
-//Ray Johnson and I worked together on this code with a tutor.
 //use global variables:
 // var lastSet = [];
 var totalClicks = 0;
