@@ -1,6 +1,7 @@
 'use strict';
 
 var totalClicks = 0; //vote tracker
+
 var firstImg = document.getElementById('first');
 var secondImg = document.getElementById('second');
 var thirdImg = document.getElementById('third');
@@ -79,7 +80,7 @@ function randomImage() {
   allProducts[secondRandom].views++;
   allProducts[thirdRandom].views++;
 
-  //everytime a random image is called 'totaClicks' increments
+  //everytime a random image is called 'totalClicks' increments
   totalClicks++;
   console.log(totalClicks);
   //add an if statement to stop running at 25 clicks (stop the event listener from functioning).
@@ -117,3 +118,5 @@ function displayResults() {
 firstImg.addEventListener('click', handleImageClick);
 secondImg.addEventListener('click', handleImageClick);
 thirdImg.addEventListener('click', handleImageClick);
+
+//
