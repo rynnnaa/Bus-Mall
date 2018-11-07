@@ -1,5 +1,6 @@
 'use strict';
 
+var ctx = document.getElementById("myChart").getContext('2d');
 var totalClicks = 0; //vote tracker
 var firstImg = document.getElementById('first');
 var secondImg = document.getElementById('second');
@@ -105,14 +106,52 @@ function handleImageClick(event) {
 }
 randomImage();
 //generate a string for every object
-function displayResults() {
-  //use a for loop to iterate through the array:
-  for (var i = 0; i < allProducts.length; i++) { //start at 0. is 0 < 20? if yes, increment it by 1 
-    var listEl = document.createElement('li');
-    listEl.textContent = allProducts[i].votes + ' votes for the ' + allProducts[i].name + ' and ' + allProducts[i].views + ' views ';
-    results.appendChild(listEl);
-  }
+function displayResults()   {
+  var names = [];
+for (var i = 0; i < allProducts.length; i++) {
+  names.push(allProducts[i].name);
 }
+
+var votes = [];
+for (var j = 0; j < allProducts.length; j++) {
+  votes.push(allProducts[j].votes);
+}
+
+var colors = [];
+for (var k = 0; k < allProducts.length; k++) {
+  colors.push(allProducts[k].bgColor);
+}
+
+var chartConfig = {
+  type: 'bar',
+  data: {
+    labels: names,
+    datasets: [{
+      label: '# of Votes',
+      data: votes,
+      backgroundColor: colors,
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+};
+
+return new Chart(ctx, chartConfig);
+
+//   //use a for loop to iterate through the array:
+//   for (var i = 0; i < allProducts.length; i++) { //start at 0. is 0 < 20? if yes, increment it by 1 
+//     var listEl = document.createElement('li');
+//     listEl.textContent = allProducts[i].votes + ' votes for the ' + allProducts[i].name + ' and ' + allProducts[i].views + ' views ';
+//     results.appendChild(listEl);
+//   }
+// }
 //add event listeners to receive the value of the callback function 
 firstImg.addEventListener('click', handleImageClick);
 secondImg.addEventListener('click', handleImageClick);
