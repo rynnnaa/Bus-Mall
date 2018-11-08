@@ -166,3 +166,40 @@ function displayResults() {
 firstImg.addEventListener("click", handleImageClick);
 secondImg.addEventListener("click", handleImageClick);
 thirdImg.addEventListener("click", handleImageClick);
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+var myChart = new Chart(ctx, chartConfig);
+
+if(localStorage.getItem('voteData')) {
+  var voteData = localStorage.getItem('voteData');
+  myChart.data.datasets[0].data = JSON.parse(voteData);
+
+
+  // myChart.data.datasets[0].data = JSON.parse(localStorage.getItem('voteData'));
+
+  myChart.update();
+}
+
+colorsEl.addEventListener('click', function(event) {
+  // validate the target as a p tag
+  // get the id of the target p tag
+  // use the id to get the index location for what data point to increment in data
+
+  var pId = event.target.id;
+  var idx = colors.indexOf(pId);
+
+  if (idx !== -1) {
+    myChart.data.datasets[0].data[idx] += 1;
+    console.log(myChart.data.datasets[0].data);
+    myChart.update();
+
+    var jsonData = JSON.stringify(myChart.data.datasets[0].data);
+    localStorage.setItem('voteData', jsonData);
+  }
+})
