@@ -174,27 +174,25 @@ thirdImg.addEventListener("click", handleImageClick);
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-var myChart = new Chart(ctx, chartConfig);
+var myChart = new Chart(ctx, chartConfig); //insatntiate a new chart //creates a new object 'new chart' and gives it a function(ctx, chartConfig)
 
-if(localStorage.getItem('voteData')) {
-  var voteData = localStorage.getItem('voteData');
-  myChart.data.datasets[0].data = JSON.parse(voteData);
+if(localStorage.getItem('voteData')) { //checks to see if something exists in local storage
+  var voteData = localStorage.getItem('voteData'); //assigning the variable voteData to see if something exists
+  myChart.data.datasets[0].data = JSON.parse(voteData); //parse it back into javascript // storing the data
 
+//Recreate your project objects || Update the products in your allProducst array
 
-  // myChart.data.datasets[0].data = JSON.parse(localStorage.getItem('voteData'));
-
-  myChart.update();
+  myChart.update(); //call to re render the chart
 }
 
-colorsEl.addEventListener('click', function(event) {
-  // validate the target as a p tag
+colorsEl.addEventListener('click', function(event) { // grab the id of the element that was clicked
   // get the id of the target p tag
   // use the id to get the index location for what data point to increment in data
 
-  var pId = event.target.id;
-  var idx = colors.indexOf(pId);
+  var pId = event.target.id; //assigning pId the event target ID
+  var idx = allProducts.indexOf(pId); //assigning the index of the color array id's target
 
-  if (idx !== -1) {
+  if (idx !== -1) { // if the idx is not an index not in the array
     myChart.data.datasets[0].data[idx] += 1;
     console.log(myChart.data.datasets[0].data);
     myChart.update();
