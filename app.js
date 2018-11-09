@@ -1,5 +1,6 @@
 "use strict";
 
+var ctx = document.getElementById("myChart").getContext('2d');
 var totalClicks = 0; //vote tracker
 var ctx = document.getElementById("myChart").getContext("2d");
 var firstImg = document.getElementById("first");
@@ -119,85 +120,3 @@ function handleImageClick(event) {
 }
 randomImage();
 //generate a string for every object
-function displayResults() {
-  var names = [];
-  for (var i = 0; i < allProducts.length; i++) {
-    names.push(allProducts[i].name);
-  }
-
-  var votes = [];
-  for (var j = 0; j < allProducts.length; j++) {
-    votes.push(allProducts[j].votes);
-  }
-
-  var colors = [];
-  for (var k = 0; k < allProducts.length; k++) {
-    colors.push(allProducts[k].bgColor);
-  }
-
-  var chartConfig = {
-    type: "bar",
-    data: {
-      labels: names,
-      datasets: [
-        {
-          label: "# of Votes",
-          data: votes,
-          backgroundColor: colors
-        }
-      ]
-    },
-    options: {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true
-            }
-          }
-        ]
-      }
-    }
-  };
-
-  return new Chart(ctx, chartConfig);
-}
-//add event listeners to receive the value of the callback function
-firstImg.addEventListener("click", handleImageClick);
-secondImg.addEventListener("click", handleImageClick);
-thirdImg.addEventListener("click", handleImageClick);
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-
-var myChart = new Chart(ctx, chartConfig); //insatntiate a new chart //creates a new object 'new chart' and gives it a function(ctx, chartConfig)
-
-if(localStorage.getItem('voteData')) { //checks to see if something exists in local storage
-  var voteData = localStorage.getItem('voteData'); //assigning the variable voteData to see if something exists
-  myChart.data.datasets[0].data = JSON.parse(voteData); //parse it back into javascript // storing the data
-
-//Recreate your project objects || Update the products in your allProducst array
-
-  myChart.update(); //call to re render the chart
-}
-
-colorsEl.addEventListener('click', function(event) { // grab the id of the element that was clicked
-  // get the id of the target p tag
-  // use the id to get the index location for what data point to increment in data
-
-  var pId = event.target.id; //assigning pId the event target ID
-  var idx = allProducts.indexOf(pId); //assigning the index of the color array id's target
-
-  if (idx !== -1) { // if the idx is not an index not in the array
-    myChart.data.datasets[0].data[idx] += 1;
-    console.log(myChart.data.datasets[0].data);
-    myChart.update();
-
-    var jsonData = JSON.stringify(myChart.data.datasets[0].data);
-    localStorage.setItem('voteData', jsonData);
-  }
-})
