@@ -1,0 +1,13 @@
+body {
+  background-color: plum;
+}
+
+#main-content {
+  list-style-position: outside;
+
+}
+
+h2 {
+  text-align: center;
+  text-size-adjust: 30px;
+}
