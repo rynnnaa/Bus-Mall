@@ -158,4 +158,3 @@ function displayResults() {
 firstImg.addEventListener('click', handleImageClick);
 secondImg.addEventListener('click', handleImageClick);
 thirdImg.addEventListener('click', handleImageClick);
-//Donne
