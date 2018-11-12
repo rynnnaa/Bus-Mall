@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use strict';
 
 //use global variables:
@@ -158,3 +159,5 @@ function displayResults() {
 firstImg.addEventListener('click', handleImageClick);
 secondImg.addEventListener('click', handleImageClick);
 thirdImg.addEventListener('click', handleImageClick);
+=======
+>>>>>>> da7e4886553a7f4ce0d58e970260ae0f189edf80
